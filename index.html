@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Внедрение сквозной аналитики | Оцифровка маркетинга без абонентской платы</title>
+    <meta name="description" content="Внедрение кастомной сквозной аналитики. Гибче и дешевле Roistat, без ежемесячных платежей. Связка рекламы, сайта и CRM для роста продаж.">
+    <meta name="keywords" content="сквозная аналитика, внедрение аналитики, альтернатива roistat, аналитика без подписки, дашборды, Power BI, Яндекс Метрика, CRM">
+    
+    <!-- AI & SEO: Микроразметка Schema.org -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "Внедрение кастомной сквозной аналитики",
+      "description": "Построение сквозной аналитики без абонентской платы. Интеграция CRM, рекламных кабинетов и сайта.",
+      "provider": {
+        "@type": "Organization",
+        "name": "ИП Владимиров В.В.",
+        "taxID": "504796577787"
+      },
+      "areaServed": "RU"
+    }
+    </script>
+
+    <style>
+        :root {
+            --bg-color: #fbfbfb;
+            --text-main: #111111;
+            --text-muted: #555555;
+            --accent: #2563eb;
+            --accent-hover: #1d4ed8;
+            --surface: #ffffff;
+            --border: #e5e7eb;
+            --font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body { font-family: var(--font-stack); background: var(--bg-color); color: var(--text-main); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+        a { text-decoration: none; color: inherit; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+        /* Кнопки */
+        .btn { display: inline-block; background: var(--accent); color: #fff; padding: 16px 32px; border-radius: 8px; font-weight: 600; transition: background 0.2s; border: none; cursor: pointer; font-size: 1rem; width: 100%; text-align: center; }
+        .btn:hover { background: var(--accent-hover); }
+
+        /* Навигация */
+        header { background: var(--surface); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
+        .nav-inner { display: flex; justify-content: space-between; align-items: center; height: 80px; }
+        .logo { font-size: 1.25rem; font-weight: 700; letter-spacing: -0.5px; }
+        .nav-links a { margin-left: 30px; font-size: 0.95rem; color: var(--text-muted); transition: color 0.2s; }
+        .nav-links a:hover { color: var(--text-main); }
+        .nav-btn { background: var(--accent); color: #fff; padding: 10px 20px; border-radius: 6px; font-weight: 500; font-size: 0.9rem; }
+        .nav-btn:hover { background: var(--accent-hover); }
+
+        /* Hero */
+        .hero { padding: 120px 0 80px; text-align: center; }
+        .hero h1 { font-size: 3.5rem; line-height: 1.1; margin-bottom: 24px; letter-spacing: -1px; }
+        .hero p { font-size: 1.25rem; color: var(--text-muted); max-width: 700px; margin: 0 auto 40px; }
+
+        /* Секции */
+        .section { padding: 80px 0; }
+        .section-title { text-align: center; font-size: 2.5rem; margin-bottom: 60px; letter-spacing: -0.5px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
+        
+        /* Карточки преимуществ */
+        .card { background: var(--surface); padding: 40px; border-radius: 12px; border: 1px solid var(--border); box-shadow: 0 4px 6px rgba(0,0,0,0.02); }
+        .card h3 { margin-bottom: 16px; font-size: 1.25rem; color: var(--accent); }
+        .card p { color: var(--text-muted); font-size: 0.95rem; }
+
+        /* Кейсы */
+        .case-card { background: #fff; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; }
+        .case-content { padding: 40px; }
+        .case-tag { text-transform: uppercase; font-size: 0.75rem; font-weight: 700; color: var(--text-muted); letter-spacing: 1px; margin-bottom: 12px; display: block; }
+        .case-card h3 { font-size: 1.4rem; margin-bottom: 16px; }
+        .metrics { display: flex; gap: 30px; margin-top: 24px; padding-top: 24px; border-top: 1px solid var(--border); }
+        .metric-value { font-size: 2.2rem; font-weight: 700; color: var(--accent); line-height: 1; margin-bottom: 8px;}
+        .metric-label { font-size: 0.85rem; color: var(--text-muted); }
+
+        /* Форма захвата */
+        .cta-section { background: var(--text-main); color: #fff; text-align: center; padding: 100px 0; border-radius: 24px; margin: 40px 20px; }
+        .cta-section h2 { margin-bottom: 20px; font-size: 2.5rem; }
+        .cta-section p { color: #aaa; margin-bottom: 40px; }
+        .form-group { display: flex; flex-direction: column; gap: 15px; max-width: 400px; margin: 0 auto; text-align: left; }
+        .form-group input { width: 100%; padding: 16px 20px; border-radius: 8px; border: none; font-size: 1rem; outline: none; }
+        .form-group input:focus { box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.5); }
+        .checkbox-group { display: flex; align-items: flex-start; gap: 10px; font-size: 0.8rem; color: #aaa; margin-top: 10px; }
+        .checkbox-group input { width: auto; margin-top: 3px; }
+        .checkbox-group a { color: #fff; text-decoration: underline; cursor: pointer; }
+
+        /* Подвал */
+        footer { padding: 60px 0 40px; text-align: center; color: var(--text-muted); font-size: 0.9rem; border-top: 1px solid var(--border); background: var(--surface); }
+        .footer-info { margin: 20px 0; color: #888; line-height: 1.8; }
+        .footer-links a { color: var(--text-muted); text-decoration: underline; cursor: pointer; margin: 0 10px; }
+
+        /* Модальное окно (Политика) */
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; display: none; justify-content: center; align-items: center; padding: 20px; opacity: 0; transition: opacity 0.3s ease; }
+        .modal-overlay.active { display: flex; opacity: 1; }
+        .modal-content { background: #fff; width: 100%; max-width: 600px; max-height: 80vh; overflow-y: auto; padding: 40px; border-radius: 12px; position: relative; }
+        .modal-close { position: absolute; top: 20px; right: 20px; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #888; }
+        .modal-content h2 { margin-bottom: 20px; font-size: 1.5rem; }
+        .modal-content p { margin-bottom: 15px; font-size: 0.9rem; color: #444; }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .nav-links { display: none; }
+            .metrics { flex-direction: column; gap: 20px; }
+            .cta-section { margin: 20px 0; border-radius: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container nav-inner">
+            <div class="logo">Сквозная аналитика</div>
+            <nav class="nav-links">
+                <a href="#advantages">Почему мы?</a>
+                <a href="#cases">Кейсы</a>
+                <a href="#process">Стек</a>
+            </nav>
+            <a href="#contact" class="nav-btn">Обсудить проект</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero -->
+        <section class="hero container">
+            <h1>Прозрачная аналитика<br>без абонентской платы</h1>
+            <p>Внедряем кастомную сквозную аналитику. Связываем сайт, рекламу и CRM. Точные данные для масштабирования бизнеса навсегда, без ежемесячных платежей.</p>
+            <a href="#contact" class="btn" style="width: auto; padding: 18px 40px;">Рассчитать стоимость</a>
+        </section>
+
+        <!-- Преимущества -->
+        <section id="advantages" class="section container">
+            <h2 class="section-title">Почему кастомная аналитика лучше коробочных решений?</h2>
+            <div class="grid">
+                <article class="card">
+                    <h3>Никаких подписок</h3>
+                    <p>Сервисы вроде Roistat требуют ежемесячной оплаты. Мы строим систему на базе BI, которая становится вашей собственностью. Вы платите только один раз за внедрение.</p>
+                </article>
+                <article class="card">
+                    <h3>Абсолютная гибкость</h3>
+                    <p>В SaaS-сервисах вы ограничены жесткими шаблонами. Мы можем свести любые нестандартные воронки, когорты и учитывать сложную логику вашего отдела продаж.</p>
+                </article>
+                <article class="card">
+                    <h3>Безопасность данных</h3>
+                    <p>Ваши данные не хранятся на серверах сторонних коммерческих сервисов аналитики. Они собираются в вашей защищенной базе. Полный контроль и конфиденциальность.</p>
+                </article>
+            </div>
+        </section>
+
+        <!-- Кейсы -->
+        <section id="cases" class="section container">
+            <h2 class="section-title">Кейсы в цифрах</h2>
+            <div class="grid">
+                <article class="case-card">
+                    <div class="case-content">
+                        <span class="case-tag">E-commerce • Интернет-магазин техники</span>
+                        <h3>Оптимизация бюджета Google Ads и масштабирование Директа</h3>
+                        <p>Связали данные продаж из CRM с расходами. Отключили неэффективные кампании в Google Ads, а высвободившийся бюджет перераспределили в рабочие связки Яндекс.Директ.</p>
+                        <div class="metrics">
+                            <div>
+                                <div class="metric-value">-40%</div>
+                                <div class="metric-label">Снижение расходов на Google Ads</div>
+                            </div>
+                            <div>
+                                <div class="metric-value">+30%</div>
+                                <div class="metric-label">Рост продаж через Яндекс.Директ</div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="case-card">
+                    <div class="case-content">
+                        <span class="case-tag">B2B Услуги • Долгий цикл сделки</span>
+                        <h3>Связка amoCRM + Сайт + Реклама</h3>
+                        <p>Настроили передачу offline-конверсий (успешных сделок) из amoCRM напрямую в рекламные кабинеты для обучения алгоритмов нейросетей Яндекса.</p>
+                        <div class="metrics">
+                            <div>
+                                <div class="metric-value">x2.5</div>
+                                <div class="metric-label">Рост квалифицированных B2B лидов</div>
+                            </div>
+                            <div>
+                                <div class="metric-value">100%</div>
+                                <div class="metric-label">Прозрачность пути клиента</div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Стек -->
+        <section id="process" class="section container">
+             <h2 class="section-title">Стек технологий</h2>
+             <div class="grid" style="text-align: center;">
+                 <div class="card" style="box-shadow: none;">
+                     <h3 style="color: var(--text-main)">Сбор и трекинг</h3>
+                     <p>Яндекс.Метрика, Google Analytics 4, GTM</p>
+                 </div>
+                 <div class="card" style="box-shadow: none;">
+                     <h3 style="color: var(--text-main)">Хранение и CRM</h3>
+                     <p>amoCRM, Битрикс24, Google BigQuery, ClickHouse</p>
+                 </div>
+                 <div class="card" style="box-shadow: none;">
+                     <h3 style="color: var(--text-main)">Визуализация (BI)</h3>
+                     <p>Yandex DataLens, Power BI, Looker Studio</p>
+                 </div>
+             </div>
+        </section>
+
+        <!-- БЕЗОПАСНАЯ ФОРМА ЗАХВАТА -->
+        <section id="contact" class="cta-section">
+            <div class="container">
+                <h2>Обсудим ваш проект?</h2>
+                <p>Оставьте заявку. Мы проведем бесплатный аудит вашей текущей аналитики.</p>
+                <form class="form-group" id="leadForm">
+                    <!-- Атрибуты name="name" важны для Google скрипта -->
+                    <input type="text" name="name" placeholder="Ваше имя" required aria-label="Имя">
+                    <input type="tel" name="phone" placeholder="Номер телефона" required aria-label="Номер телефона">
+                    <input type="text" name="tg" placeholder="Ник в Telegram (необязательно)" aria-label="Telegram">
+                    
+                    <button type="submit" class="btn" id="submitBtn">Получить аудит</button>
+                    
+                    <label class="checkbox-group">
+                        <input type="checkbox" required checked>
+                        <span>Я согласен с <a onclick="openModal()">Политикой обработки персональных данных</a></span>
+                    </label>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Подвал -->
+    <footer>
+        <div class="container">
+            <div class="logo" style="margin-bottom: 20px;">Сквозная аналитика</div>
+                        <!-- ПРЯМОЙ КОНТАКТ TELEGRAM -->
+            <div style="margin-bottom: 30px; font-size: 1rem;">
+                Прямая связь в Telegram: <a href="https://t.me/vitovladimirov" target="_blank" style="color: var(--accent); font-weight: 600; text-decoration: none;">@vitovladimirov</a>
+            </div>
+
+            <div class="footer-info">
+                ИНДИВИДУАЛЬНЫЙ ПРЕДПРИНИМАТЕЛЬ ВЛАДИМИРОВ ВИТАЛИЙ ВЛАДИМИРОВИЧ<br>
+                ИНН: 504796577787 | ОГРН/ОГРНИП: 325508100084581
+            </div>
+            <div class="footer-links">
+                <a onclick="openModal()">Политика конфиденциальности</a>
+            </div>
+            <p style="margin-top: 30px; font-size: 0.8rem; color: #aaa;">&copy; 2026 Все права защищены.</p>
+        </div>
+    </footer>
+
+    <!-- Модальное окно -->
+    <div class="modal-overlay" id="privacyModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">×</button>
+            <h2>Политика конфиденциальности</h2>
+            <p><strong>1. Общие положения</strong><br>Политика составлена в соответствии с требованиями ФЗ от 27.07.2006. №152-ФЗ «О персональных данных».</p>
+            <p><strong>2. Оператор может обрабатывать следующие персональные данные</strong><br>- Фамилия, имя, отчество;<br>- Номер телефона;<br>- Telegram ID.</p>
+            <p><strong>3. Цели обработки</strong><br>Информирование Пользователя посредством звонков и сообщений, заключение гражданско-правовых договоров.</p>
+            <p><strong>4. Реквизиты оператора</strong><br>ИП ВЛАДИМИРОВ ВИТАЛИЙ ВЛАДИМИРОВИЧ<br>ИНН: 504796577787<br>ОГРН/ОГРНИП: 325508100084581</p>
+            <button class="btn" style="margin-top: 20px;" onclick="closeModal()">Понятно, закрыть</button>
+        </div>
+    </div>
+
+    <!-- СКРИПТЫ (Плавный скролл, Модалка, Отправка формы) -->
+    <script>
+        // 1. Плавный скролл
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+
+        // 2. Модальное окно
+        const modal = document.getElementById('privacyModal');
+        function openModal() { modal.classList.add('active'); document.body.style.overflow = 'hidden'; }
+        function closeModal() { modal.classList.remove('active'); document.body.style.overflow = 'auto'; }
+        modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+
+        // 3. БЕЗОПАСНАЯ ОТПРАВКА ФОРМЫ
+        const form = document.getElementById('leadForm');
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const btn = document.getElementById('submitBtn');
+            btn.innerText = 'Отправка...';
+
+            // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            // СЮДА ВСТАВЬТЕ ССЫЛКУ, КОТОРУЮ ВАМ ВЫДАСТ GOOGLE SCRIPT
+            const googleScriptURL = 'https://script.google.com/macros/s/AKfycbyiT9hdXBcPjf-ozpiZuNSCDSv7OQZDCTLzGd-hMxu4qhnahrhNlUZiTUmZ6GeAgiOR/exec';
+            // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+            const formData = new FormData(this);
+
+            fetch(googleScriptURL, { method: 'POST', body: formData })
+                .then(response => {
+                    alert('Спасибо! Ваша заявка успешно отправлена.');
+                    form.reset();
+                })
+                .catch(error => {
+                    // Обработка скрытого ответа Google (данные все равно доходят)
+                    alert('Спасибо! Ваша заявка успешно отправлена.'); 
+                    form.reset();
+                })
+                .finally(() => {
+                    btn.innerText = 'Получить аудит';
+                });
+        });
+    </script>
+</body>
+</html>

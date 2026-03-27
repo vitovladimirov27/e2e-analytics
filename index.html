@@ -314,6 +314,9 @@
             fetch(googleScriptURL, { method: 'POST', body: formData })
                 .then(response => {
                     alert('Спасибо! Ваша заявка успешно отправлена.');
+                        if (typeof ym === 'function') {
+                        ym(12345678, 'reachGoal', 'lead_form'); 
+                    }
                     form.reset();
                 })
                 .catch(error => {
